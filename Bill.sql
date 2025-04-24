@@ -61,4 +61,36 @@ PRIMARY KEY (Provided_service),
 FOREIGN KEY (Bill_ID) REFERENCES BILL (Bill_ID)
 );
 
+/*New tables
+*/
+CREATE TABLE MEMBER(
+Patient_ID           INT,
+Renewal_deadline     DATE,
+PRIMARY KEY (Patient_ID),
+FOREIGN KEY (Patient_ID) REFERENCES PATIENT (Patient_ID)
+);
+
+CREATE TABLE PTPROFILE (
+Username             VARCHAR(30),
+Patient_ID           INT,
+Fname                VARCHAR(15),
+Lname                VARCHAR(15),
+Password             VARCHAR(20),
+Appointment_history  LONGBLOB,
+Medical_history      LONGBLOB,
+PRIMARY KEY (Username),
+FOREIGN KEY (Patient_ID) REFERENCES PATIENT (Patient_ID)
+);
+
+CREATE TABLE COMMUNITY_POST (
+Username              VARCHAR(30),
+Post_num              INT,
+Post_content          LONGBLOB,
+Likes                 INT,
+Post_date             DATE,
+PRIMARY KEY (Username),
+PRIMARY KEY (Post_num),
+FOREIGN KEY (Username) REFERENCES PTPROFILE (Username)
+);
+
 
